@@ -140,12 +140,12 @@ function analyzeJavaScript(
 
 function analyzePython(
   content: string,
-  lines: string[],
+  _lines: string[],
   fileId: string,
   symbols: CodeSymbol[],
-  relationships: CodeRelationship[],
+  _relationships: CodeRelationship[],
   getSymbolId: () => number,
-  getRelId: () => number
+  _getRelId: () => number
 ) {
   // 函数定义: def name():
   const funcPattern = /def\s+(\w+)\s*\(/g
@@ -189,12 +189,12 @@ function analyzePython(
 
 function analyzeJava(
   content: string,
-  lines: string[],
+  _lines: string[],
   fileId: string,
   symbols: CodeSymbol[],
-  relationships: CodeRelationship[],
+  _relationships: CodeRelationship[],
   getSymbolId: () => number,
-  getRelId: () => number
+  _getRelId: () => number
 ) {
   // 方法定义
   const methodPattern = /(?:public|private|protected|static|\s)+[\w<>\[\]]+\s+(\w+)\s*\([^)]*\)\s*\{/g
@@ -238,12 +238,12 @@ function analyzeJava(
 
 function analyzeGo(
   content: string,
-  lines: string[],
+  _lines: string[],
   fileId: string,
   symbols: CodeSymbol[],
-  relationships: CodeRelationship[],
+  _relationships: CodeRelationship[],
   getSymbolId: () => number,
-  getRelId: () => number
+  _getRelId: () => number
 ) {
   // 函数定义: func name()
   const funcPattern = /func\s+(?:\([^)]+\)\s+)?(\w+)\s*\(/g
@@ -287,12 +287,12 @@ function analyzeGo(
 
 function analyzeGeneric(
   content: string,
-  lines: string[],
+  _lines: string[],
   fileId: string,
   symbols: CodeSymbol[],
-  relationships: CodeRelationship[],
+  _relationships: CodeRelationship[],
   getSymbolId: () => number,
-  getRelId: () => number
+  _getRelId: () => number
 ) {
   // 通用函数匹配 - 尝试识别常见的函数定义模式
   const patterns = [

@@ -26,7 +26,7 @@ interface GraphState {
   setSelectedNode: (id: string | null) => void
   
   setIsAnalyzing: (value: boolean) => void
-  setAnalysisProgress: (progress: number) => void
+  setAnalysisProgress: (progress: number | ((prev: number) => number)) => void
   setError: (error: string | null) => void
   
   toggleShowFiles: () => void
@@ -54,7 +54,7 @@ const initialState = {
   showImports: true,
 }
 
-export const useGraphStore = create<GraphState>((set, get) => ({
+export const useGraphStore = create<GraphState>((set) => ({
   ...initialState,
   
   setNodes: (nodes) => set({ nodes }),
@@ -63,7 +63,9 @@ export const useGraphStore = create<GraphState>((set, get) => ({
   setSelectedNode: (id) => set({ selectedNode: id }),
   
   setIsAnalyzing: (value) => set({ isAnalyzing: value }),
-  setAnalysisProgress: (progress) => set({ analysisProgress: progress }),
+  setAnalysisProgress: (progress) => set((state) => ({ 
+    analysisProgress: typeof progress === 'function' ? progress(state.analysisProgress) : progress 
+  })),
   setError: (error) => set({ error }),
   
   toggleShowFiles: () => set((state) => ({ showFiles: !state.showFiles })),

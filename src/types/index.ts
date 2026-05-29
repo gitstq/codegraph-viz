@@ -23,7 +23,7 @@ export interface CodeRelationship {
   id: string
   source: string
   target: string
-  type: 'imports' | 'calls' | 'extends' | 'implements' | 'contains'
+  type: 'imports' | 'calls' | 'extends' | 'contains'
 }
 
 export interface GraphNode {

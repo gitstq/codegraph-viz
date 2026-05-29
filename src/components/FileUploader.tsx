@@ -46,7 +46,7 @@ export default function FileUploader({ onFilesSelected, isAnalyzing }: FileUploa
     try {
       // 模拟进度更新
       const progressInterval = setInterval(() => {
-        setAnalysisProgress(prev => {
+        setAnalysisProgress((prev: number) => {
           if (prev >= 90) {
             clearInterval(progressInterval)
             return 90
@@ -190,8 +190,7 @@ export default function FileUploader({ onFilesSelected, isAnalyzing }: FileUploa
             <input
               ref={folderInputRef}
               type="file"
-              webkitdirectory=""
-              directory=""
+              {...{ webkitdirectory: "", directory: "" }}
               multiple
               onChange={handleFolderSelect}
               className="hidden"

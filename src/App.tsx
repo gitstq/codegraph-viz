@@ -13,7 +13,7 @@ function App() {
   const [selectedNode, setSelectedNode] = useState<any>(null)
   const { nodes, edges, isAnalyzing, analysisProgress } = useGraphStore()
 
-  const handleFilesSelected = useCallback((files: FileList) => {
+  const handleFilesSelected = useCallback(() => {
     setShowUploader(false)
     // 文件处理逻辑在FileUploader组件中完成
   }, [])

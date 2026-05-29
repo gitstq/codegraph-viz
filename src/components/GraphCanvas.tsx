@@ -3,14 +3,14 @@ import ReactFlow, {
   Background,
   Controls,
   MiniMap,
-  Node,
-  Edge,
   useNodesState,
   useEdgesState,
   NodeProps,
   Handle,
   Position,
   Panel,
+  MarkerType,
+  BackgroundVariant,
 } from 'reactflow'
 import { useGraphStore } from '../store/graphStore'
 import { FileCode, FunctionSquare, Layers, Maximize2 } from 'lucide-react'
@@ -122,13 +122,13 @@ export default function GraphCanvas({ onNodeClick }: GraphCanvasProps) {
         strokeWidth: e.type === 'contains' ? 1 : 2,
       },
       markerEnd: {
-        type: 'arrowclosed',
+        type: MarkerType.ArrowClosed,
         color: e.type === 'imports' ? '#eab308' : e.type === 'calls' ? '#22c55e' : '#6b7280',
       },
     })))
   }, [storeNodes, storeEdges, showFiles, showFunctions, showClasses, showImports, setNodes, setEdges])
 
-  const handleNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+  const handleNodeClick = useCallback((_: React.MouseEvent, node: any) => {
     onNodeClick(node)
   }, [onNodeClick])
 
@@ -180,7 +180,7 @@ export default function GraphCanvas({ onNodeClick }: GraphCanvasProps) {
           color="#374151" 
           gap={20} 
           size={1}
-          variant="dots"
+          variant={BackgroundVariant.Dots}
         />
         <Controls className="!bg-dark-800 !border-gray-700" />
         <MiniMap 
